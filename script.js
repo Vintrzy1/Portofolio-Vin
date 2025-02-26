@@ -20,3 +20,25 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         alert(error.message);
     });
 });
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let email = document.getElementById('loginEmail').value;
+    let password = document.getElementById('loginPassword').value;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+        let user = userCredential.user;
+
+        if (user.emailVerified) {
+            alert("Login berhasil! Selamat datang.");
+            window.location.href = "index.html";
+        } else {
+            alert("Silakan verifikasi email Anda terlebih dahulu.");
+        }
+    })
+    .catch((error) => {
+        alert(error.message);
+    });
+});
