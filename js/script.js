@@ -12,9 +12,9 @@ function cancel(){
 // Animasi Menulis
 
 const texts = [
-    "VINTRZYOFFC",
-    "INSYAALLAH",
-    "FAMOUS"
+    "WEB DESAIGNER",
+    "WEB DEVELOPER",
+    "BEGINER PROGRAMER"
 ]
 
 let speed = 100;
