@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saung Bodeman - Cita Rasa Sunda Autentik</title>
+    
+    <!-- Framework CSS (Tailwind) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background-color: #1c1917;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=2044&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .menu-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ea580c;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Chat Widget Animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-bubble {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f5f5f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6d3d1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-orange-700 font-serif tracking-tight">Saung Bodeman</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-stone-600 hover:text-orange-600 font-medium transition">Beranda</a>
+                    <a href="#menu" class="nav-link text-stone-600 hover:text-orange-600 font-medium transition">Menu</a>
+                    <a href="#about" class="nav-link text-stone-600 hover:text-orange-600 font-medium transition">Tentang Kami</a>
+                    <a href="#contact" class="bg-orange-600 text-white px-6 py-2.5 rounded-full hover:bg-orange-700 shadow-md transition-all font-semibold">
+                        Reservasi
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="p-2 text-stone-600 hover:bg-stone-100 rounded-lg transition">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100 p-4 space-y-3 shadow-xl">
+            <a href="#home" class="block px-4 py-3 rounded-xl hover:bg-orange-50 text-stone-700 font-medium transition">Beranda</a>
+            <a href="#menu" class="block px-4 py-3 rounded-xl hover:bg-orange-50 text-stone-700 font-medium transition">Menu</a>
+            <a href="#about" class="block px-4 py-3 rounded-xl hover:bg-orange-50 text-stone-700 font-medium transition">Tentang Kami</a>
+            <a href="#contact" class="block px-4 py-3 rounded-xl bg-orange-600 text-white font-bold text-center">Hubungi Kami</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg min-h-screen flex items-center justify-center text-center text-white px-6 relative">
+        <div class="max-w-4xl z-10 pt-20">
+            <span class="inline-block bg-orange-600/20 backdrop-blur-md border border-orange-500/30 text-orange-400 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest uppercase mb-6">
+                Cita Rasa Sunda Autentik
+            </span>
+            <h1 class="text-5xl md:text-8xl font-serif mb-8 leading-[1.1]">Website Resmi Saung Bodeman</h1>
+            <p class="text-lg md:text-2xl mb-10 opacity-90 max-w-2xl mx-auto font-light leading-relaxed">
+                Nikmati perpaduan rempah khas Sunda dengan suasana alam yang asri di pusat Karawang. Kini pesan dan reservasi lebih mudah lewat website ini.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#menu" class="group bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-full text-lg font-bold transition-all flex items-center justify-center shadow-lg">
+                    Lihat Menu Kami <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full text-lg font-bold transition-all flex items-center justify-center">
+                    <i data-lucide="phone" class="mr-2 w-5 h-5"></i> Hubungi Kami
+                </a>
+            </div>
+            
+            <!-- AI Feature Callout -->
+            <div class="mt-12 animate-bounce cursor-pointer" onclick="toggleChat()">
+                <div class="bg-white/10 backdrop-blur-sm border border-orange-400/50 rounded-full px-6 py-3 inline-flex items-center gap-3 text-orange-100 hover:bg-white/20 transition">
+                    <span class="bg-orange-500 rounded-full p-1"><i data-lucide="sparkles" class="w-4 h-4 text-white"></i></span>
+                    <span class="font-medium">Bingung mau pesan apa? Tanya Si Teteh AI ✨</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Section (EXPANDED) -->
+    <section id="menu" class="py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif text-stone-900 mb-4">Daftar Menu Kami</h2>
+                <p class="text-stone-500 max-w-xl mx-auto">Sajian istimewa dari dapur Saung Bodeman untuk Anda dan keluarga.</p>
+                <div class="w-20 h-1.5 bg-orange-600 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <!-- Categories Tabs (Visual only) -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <span class="bg-orange-600 text-white px-6 py-2 rounded-full font-semibold">Semua</span>
+                <span class="bg-white border border-stone-200 text-stone-600 px-6 py-2 rounded-full hover:bg-orange-50 transition cursor-pointer">Makanan Berat</span>
+                <span class="bg-white border border-stone-200 text-stone-600 px-6 py-2 rounded-full hover:bg-orange-50 transition cursor-pointer">Camilan</span>
+                <span class="bg-white border border-stone-200 text-stone-600 px-6 py-2 rounded-full hover:bg-orange-50 transition cursor-pointer">Minuman</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Item 1 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1610450949065-1f2840556203?q=80&w=1000&auto=format&fit=crop" alt="Gurame Bakar" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-stone-900">Gurame Bakar Saung</h3>
+                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold italic">Andalan</span>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-6">Gurame segar pilihan dibakar dengan bumbu rempah rahasia khas Bodeman.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 85.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&auto=format&fit=crop" alt="Ayam Bakar" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-stone-900 mb-3">Ayam Bakar Madu</h3>
+                        <p class="text-stone-600 text-sm mb-6">Ayam kampung empuk dengan balutan madu murni, manis dan gurih meresap.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 25.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop" alt="Nasi Timbel" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-stone-900 mb-3">Nasi Timbel Komplit</h3>
+                        <p class="text-stone-600 text-sm mb-6">Nasi hangat bungkus daun pisang, ayam goreng, tahu, tempe, sayur asem & sambal.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 35.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1000&auto=format&fit=crop" alt="Sayur Asem" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-stone-900 mb-3">Sayur Asem Segar</h3>
+                        <p class="text-stone-600 text-sm mb-6">Perpaduan rasa asam dan pedas yang menyegarkan, pelengkap makan nasi timbel.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 15.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=1000&auto=format&fit=crop" alt="Sambal Dadak" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-stone-900 mb-3">Sambal Dadak Pedas</h3>
+                        <p class="text-stone-600 text-sm mb-6">Sambal mentah yang diulek langsung saat dipesan untuk rasa yang maksimal.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 8.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card bg-white rounded-[2rem] overflow-hidden border border-stone-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=1000&auto=format&fit=crop" alt="Es Kelapa" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-stone-900 mb-3">Es Kelapa Jeruk</h3>
+                        <p class="text-stone-600 text-sm mb-6">Minuman favorit pelepas dahaga dari kelapa muda dan jeruk asli.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-stone-900">Rp 18.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Menu List (Text based) -->
+            <div class="mt-16 bg-white p-8 md:p-12 rounded-[3rem] border border-stone-100 shadow-lg">
+                <h3 class="text-2xl font-serif text-stone-900 mb-8 text-center">Daftar Menu Tambahan</h3>
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Pencok Kacang Panjang</span>
+                        <span class="font-bold">Rp 12.000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Cah Kangkung Terasi</span>
+                        <span class="font-bold">Rp 15.000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Karedok Basreng</span>
+                        <span class="font-bold">Rp 18.000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Mendoan Hangat (Isi 4)</span>
+                        <span class="font-bold">Rp 15.000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Es Jeruk Peras</span>
+                        <span class="font-bold">Rp 12.000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-stone-100 pb-2">
+                        <span>Teh Manis (Panas/Es)</span>
+                        <span class="font-bold">Rp 5.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" alt="Suasana Saung" class="rounded-[3rem] shadow-2xl">
+                <div>
+                    <h2 class="text-4xl font-serif text-stone-900 mb-8 leading-tight">Makan Nyaman di Suasana Lesehan</h2>
+                    <p class="text-stone-600 text-lg leading-relaxed mb-10">
+                        Saung Bodeman bukan sekadar restoran. Kami menghadirkan suasana hangat seperti di rumah nenek di pedesaan. Cocok untuk acara keluarga, reuni, hingga kumpul bersama kolega kantor.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center text-stone-700">
+                            <i data-lucide="check-circle" class="text-orange-600 mr-3 w-5 h-5"></i> Area Parkir Luas
+                        </li>
+                        <li class="flex items-center text-stone-700">
+                            <i data-lucide="check-circle" class="text-orange-600 mr-3 w-5 h-5"></i> Tersedia Musholla & Toilet Bersih
+                        </li>
+                        <li class="flex items-center text-stone-700">
+                            <i data-lucide="check-circle" class="text-orange-600 mr-3 w-5 h-5"></i> Kapasitas Hingga 200 Orang
+                        </li>
+                    </ul>
+                    <a href="#contact" class="bg-stone-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-black transition-all inline-flex items-center">
+                        Reservasi Tempat <i data-lucide="calendar" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Reservation Form -->
+    <section id="contact" class="py-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-stone-100">
+                    <h3 class="text-3xl font-serif mb-8 text-stone-900">Kontak & Lokasi</h3>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="bg-orange-50 p-4 rounded-2xl text-orange-600 mr-6">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-lg">Alamat</h4>
+                                <p class="text-stone-600">PFCC+67W, Pulojaya, Lemahabang, Karawang, Jawa Barat 41383</p>
+                                <a href="https://maps.app.goo.gl/WyAwYfndtsaA3iPx9" target="_blank" class="text-orange-600 font-bold text-sm hover:underline mt-2 block">Lihat di Google Maps</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-50 p-4 rounded-2xl text-orange-600 mr-6">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-lg">Jam Operasional</h4>
+                                <p class="text-stone-600">Minggu - Jumat: 10:00 – 21:00 WIB</p>
+                                <p class="text-stone-600">Sabtu: 10:00 – 22:00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-50 p-4 rounded-2xl text-orange-600 mr-6">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-lg">Hubungi Kami</h4>
+                                <p class="text-stone-600">+62 882-1474-1323</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="bg-orange-600 p-10 rounded-[3rem] shadow-xl text-white">
+                    <h3 class="text-3xl font-serif mb-6">Pesan Meja Sekarang</h3>
+                    <p class="mb-8 opacity-90">Kirim detail reservasi Anda dan tim kami akan menghubungi Anda melalui WhatsApp.</p>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='https://wa.me/6288214741323';">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
+                            <input type="text" placeholder="Contoh: Budi Santoso" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jumlah Orang</label>
+                                <input type="number" placeholder="0" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Tanggal</label>
+                                <input type="date" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white/50 transition">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-orange-600 font-bold py-4 rounded-xl hover:bg-stone-100 transition shadow-lg mt-4 flex items-center justify-center">
+                            Kirim ke WhatsApp <i data-lucide="send" class="ml-2 w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-2xl font-bold text-orange-700 font-serif block mb-2">Saung Bodeman</span>
+            <p class="text-stone-500 text-sm mb-8">Masakan Sunda Autentik di Karawang</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-stone-400 hover:text-orange-600 transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="text-stone-400 hover:text-orange-600 transition"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-stone-400 text-xs italic">&copy; 2024 Saung Bodeman. Website Resmi.</p>
+        </div>
+    </footer>
+
+    <!-- Gemini AI Chat Widget -->
+    <div id="ai-chat-widget" class="fixed bottom-6 right-6 z-[100] flex flex-col items-end pointer-events-none">
+        
+        <!-- Chat Window -->
+        <div id="chat-window" class="bg-white rounded-2xl shadow-2xl border border-stone-200 w-80 sm:w-96 mb-4 hidden pointer-events-auto flex flex-col overflow-hidden transform transition-all duration-300 origin-bottom-right scale-95 opacity-0">
+            <!-- Header -->
+            <div class="bg-orange-600 p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <i data-lucide="sparkles" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">Si Teteh AI ✨</h4>
+                        <p class="text-orange-100 text-xs">Asisten Kuliner Pribadi</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chat-messages" class="h-80 overflow-y-auto p-4 bg-stone-50 space-y-3">
+                <!-- Welcome Message -->
+                <div class="flex gap-3">
+                    <div class="bg-orange-100 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="bot" class="w-4 h-4 text-orange-600"></i>
+                    </div>
+                    <div class="bg-white border border-stone-200 p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-stone-700">
+                        Sampurasun! 🙏<br>Bingung mau pesan apa hari ini? Ceritain aja lagi pengen makan yang kayak gimana, nanti Teteh bantu pilihin menu yang pas!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-4 bg-white border-t border-stone-100">
+                <form id="chat-form" class="flex gap-2" onsubmit="handleChatSubmit(event)">
+                    <input type="text" id="user-input" placeholder="Misal: Lagi pengen yang pedes..." class="flex-1 bg-stone-100 border-none rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                    <button type="submit" id="send-btn" class="bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" class="bg-stone-900 hover:bg-orange-600 text-white p-4 rounded-full shadow-xl hover:shadow-orange-500/30 transition-all duration-300 pointer-events-auto group flex items-center gap-2">
+            <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap text-sm font-bold pl-0 group-hover:pl-2">Tanya Menu</span>
+            <div class="relative">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+            </div>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-white/100', 'shadow-md');
+                } else {
+                    nav.classList.remove('bg-white/100', 'shadow-md');
+                }
+            });
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu) {
+                const toggleIcon = (isOpen) => {
+                    const icon = menuBtn.querySelector('i') || menuBtn.querySelector('svg');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                        lucide.createIcons();
+                    }
+                };
+
+                menuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    toggleIcon(!isHidden);
+                });
+
+                document.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        toggleIcon(false);
+                    }
+                });
+            }
+        });
+
+        /* --- AI CHAT LOGIC --- */
+        const apiKey = ""; // API Key handled by environment
+        const chatWindow = document.getElementById('chat-window');
+        const messagesContainer = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        let isChatOpen = false;
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatWindow.classList.remove('hidden');
+                // Small delay to allow display:block to apply before transition
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                setTimeout(() => userInput.focus(), 100);
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // 1. Add User Message
+            addMessage(text, 'user');
+            userInput.value = '';
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // 2. Show Loading Indicator
+            const loadingId = addLoadingIndicator();
+
+            try {
+                // 3. Prepare Prompt with Menu Context
+                const menuContext = `
+                    Daftar Menu Saung Bodeman:
+                    - Gurame Bakar Saung (Rp 85.000): Ikan gurame segar dibakar bumbu rempah.
+                    - Ayam Bakar Madu (Rp 25.000): Ayam kampung manis gurih.
+                    - Nasi Timbel Komplit (Rp 35.000): Nasi daun pisang, ayam, tahu, tempe, sayur asem, sambal.
+                    - Sayur Asem Segar (Rp 15.000).
+                    - Sambal Dadak Pedas (Rp 8.000).
+                    - Es Kelapa Jeruk (Rp 18.000).
+                    - Camilan: Mendoan Hangat, Karedok Basreng.
+                    
+                    Konteks AI: Anda adalah 'Si Teteh', asisten virtual ramah dari Saung Bodeman. Gaya bicara Anda sopan, ceria, dan menggunakan sapaan khas Sunda (Akang/Teteh). Tugas Anda merekomendasikan menu di atas berdasarkan input user. Jangan merekomendasikan menu yang tidak ada di daftar. Jawaban harus singkat (max 3 kalimat) dan persuasif.
+                `;
+
+                const prompt = `${menuContext}\n\nUser bertanya: "${text}"\nJawab sebagai Si Teteh:`;
+
+                // 4. Call Gemini API
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf Kang/Teh, sinyal lagi jelek euy. Bisa ulangi lagi?";
+
+                // 5. Remove Loading & Show Reply
+                removeLoadingIndicator(loadingId);
+                addMessage(reply, 'bot');
+
+            } catch (error) {
+                removeLoadingIndicator(loadingId);
+                addMessage("Waduh, ada kesalahan sistem. Coba lagi nanti ya!", 'bot');
+                console.error(error);
+            } finally {
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `flex gap-3 chat-bubble ${sender === 'user' ? 'flex-row-reverse' : ''}`;
+            
+            const iconHtml = sender === 'bot' 
+                ? `<div class="bg-orange-100 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-orange-600"></i></div>`
+                : `<div class="bg-stone-200 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0"><i data-lucide="user" class="w-4 h-4 text-stone-600"></i></div>`;
+            
+            const bubbleStyle = sender === 'bot'
+                ? 'bg-white border border-stone-200 text-stone-700 rounded-tl-none'
+                : 'bg-orange-600 text-white rounded-tr-none shadow-orange-200';
+
+            div.innerHTML = `
+                ${iconHtml}
+                <div class="${bubbleStyle} p-3 rounded-2xl shadow-sm text-sm max-w-[80%]">
+                    ${text}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function addLoadingIndicator() {
+            const id = 'loading-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'flex gap-3 chat-bubble';
+            div.innerHTML = `
+                <div class="bg-orange-100 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-orange-600"></i></div>
+                <div class="bg-white border border-stone-200 p-4 rounded-2xl rounded-tl-none shadow-sm text-sm text-stone-500 flex items-center gap-1">
+                    <div class="w-2 h-2 bg-stone-400 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-stone-400 rounded-full typing-dot"></div>
+                    <div class="w-2 h-2 bg-stone-400 rounded-full typing-dot"></div>
+                </div>
+            `;
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            lucide.createIcons();
+            return id;
+        }
+
+        function removeLoadingIndicator(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+    </script>
+</body>
+</html>
